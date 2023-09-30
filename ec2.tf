@@ -1,9 +1,9 @@
 resource "aws_instance" "myec2" {
-  ami                    = "ami-05ba3a39a75be1ec4"
+  ami                    = "ami-0261755bbcb8c4a84"
   instance_type          = "t2.medium"
-  availability_zone      = "ap-south-1a"
+  availability_zone      = "us-east-1a"
   vpc_security_group_ids = [aws_security_group.allow_tls.id]
-  key_name               = "MyNewKey"
+  key_name               = "ADS-KEYS"
   tags = {
     name = "minikube_instance"
   }
@@ -24,7 +24,7 @@ resource "aws_instance" "myec2" {
       type        = "ssh"
       host        = self.public_ip
       user        = "ubuntu"
-      private_key = file("./MyNewKey.pem")
+      private_key = file("./ADS-KEYS.pem")
     }
   }
 }
